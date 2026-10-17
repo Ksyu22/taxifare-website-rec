@@ -29,13 +29,13 @@ values = dict(pickup_datetime=pickup_datetime,  # 2014-07-06 19:18:00
                 passenger_count=passenger_count)
 
 
-url = 'https://taxifare.lewagon.ai/predict'
+url = st.secrets['wagon_cab_api_url']
 
-if url == 'https://taxifare.lewagon.ai/predict':
+if url:
 
     response = requests.get(url, params=values)
     prediction = response.json()
 
-    pred = prediction['fare']
+    pred = prediction['taxifare']
 
-    st.header(f'You fare is {pred}')
+    st.header(f'You fare is {round(pred)}')
